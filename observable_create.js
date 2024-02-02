@@ -12,17 +12,15 @@ function getData(){
 
         
     return Observable.create( observer => {
+        beers.forEach( beer => observer.next(beer));
 
-              beers.forEach( beer => observer.next(beer));
-
-              observer.complete();
-           }
-    );
+        observer.complete();
+    });
 }
 
 getData()
-     .subscribe(
-         beer => console.log("Subscriber got " + beer.name),
-         error => console.err(error),
-            () => console.log("The stream is over")
+    .subscribe(
+        beer => console.log( "Subscriber got " + beer.name ),
+        error => console.err(error),
+        () => console.log("The stream is over")
 );
